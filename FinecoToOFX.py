@@ -10,6 +10,7 @@
 # 0.3 Program now prompts for filename with a dialog box
 # 0.4 Program no longer leaves an empty tkinter window
 # 0.4.1 File dialog box filters to XLS files
+# 0.5 Fixed descriptions so that ampersands are replaced with "and"
 #
 # Known bugs or concerns:
 # 1. No testing is done on the layout of the source file.
@@ -51,6 +52,7 @@ def fileHeader(currency,accountNumber):
 
 def transaction(trnDate,trnAmount,trnDesc):
     uniqueID = str(int(hashlib.sha1((trnDate+trnAmount+trnDesc).encode("utf-8")).hexdigest(), 16)%(10 ** 31))
+    trnDesc=trnDesc.replace("&","and")
     message="\n"
     message=message+("<STMTTRN>\n")
     message=message+("<TRNTYPE>OTHER</TRNTYPE>\n")
